@@ -1,7 +1,8 @@
-package com.elena.aktia_backend;
+package com.elena.aktia_backend.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.util.Set;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @RequiredArgsConstructor
 @Entity
 @Table(name = "agreementService")
@@ -20,8 +22,10 @@ public class AgreementService {
     private Long id;
     @NonNull
     private int serviceType;
-    private float serviceFee;
+    @NonNull
+    private double serviceFee;
     
+    @NonNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "agreement", referencedColumnName = "id")
     private Agreement agreement;

@@ -1,4 +1,4 @@
-package com.elena.aktia_backend;
+package com.elena.aktia_backend.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,37 +12,30 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;
+import java.util.Collection;
 
-//@Data
-//@NoArgsConstructor
+import com.elena.aktia_backend.model.Agreement;
+
 @Builder
 @Data
-@Entity
-@EqualsAndHashCode
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @RequiredArgsConstructor
-//@Table
-//@ToString
-//@Entity
-//@Getter
-//@Setter
-//@Builder
-//@RequiredArgsConstructor
+@Entity
 @Table(name = "customer")
 public class Customer {
-
-
 
 	@Id
     @GeneratedValue
     private Long id;
     @NonNull
     private String name;
-    private String customer_id;
+    @NonNull
+    private String ssn;
     
-
-	
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
+    private Collection <Agreement> agreement;
+    
 	@Override
 	public String toString() {
 		return this.name;

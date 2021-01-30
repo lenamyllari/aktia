@@ -1,11 +1,9 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch, Route, Link
-} from 'react-router-dom'
-import CustomerList from "../src/Components/CustomerList";
-import AgreementList from "../src/Components/AgreementList";
-import AgreementServiceList from "../src/Components/AgreementServiceList";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import AppNavBar from "../src/Components/AppNavBar";
+import CustomerList from "./Components/CustomerList";
+import CustomerEdit from "./Components/CustomerEdit";
+import Home from "./Components/Home";
 
 function App() {
   const padding = {
@@ -13,33 +11,18 @@ function App() {
     fontSize: 50,
   };
 
-  var customers = [{name:"a"}, {name: "b"}];
-  var agreements = [{id: 1, customer:customers[0], type: 100}, {id:2, customer:customers[1], type: 100}]
-  var services = [{id: 1, agreement:agreements[0], type: 100, fee: 23.50}, {id: 2, agreement:agreements[1], type: 50, fee: 123.50}]
 
   return (
     <div className="mystyle" >
+      <AppNavBar/>
         <Router>
-          <div>
-            <Link style={padding}  to="/customers">customers</Link>
-            <Link style={padding}  to="/agreements">agreements</Link>
-            <Link style={padding}  to="/services">services</Link>
-          </div>
-          <Switch>
-            <Route exact path="/">
-            </Route>
-            <Route path="/customers">
-              <CustomerList customers={customers}></CustomerList>
-            </Route>
-            <Route path="/agreements">
-              <AgreementList agreements ={agreements}/>
-            </Route>
-            <Route path="/services">
-              <AgreementServiceList services = {services}/>
-            </Route>
-          </Switch>
+            <Switch>
+                <Route path='/' exact={true} component={Home}/>
+                <Route path='/customers' component={CustomerList}/>
+                <Route path='/customers/new'  component={CustomerEdit}/>
+                <Route path='/customers/:id' component={CustomerEdit}/>
+            </Switch>
         </Router>
-
       </div>
   );
 }
