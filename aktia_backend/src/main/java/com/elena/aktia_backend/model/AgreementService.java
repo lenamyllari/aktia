@@ -18,7 +18,7 @@ import java.util.Set;
 public class AgreementService {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "service_seq")
     private Long id;
     @NonNull
     private int serviceType;

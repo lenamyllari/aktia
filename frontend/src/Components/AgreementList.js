@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Agreement from "./Agreement"
 import {Container, Table} from "reactstrap";
 
 export default class  AgreementList extends Component  {

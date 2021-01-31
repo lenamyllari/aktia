@@ -45,9 +45,9 @@ public class AgreementController {
         return agreementService.findByCustomerId(id);
     }
 
-/*    @DeleteMapping("/agreements/{id}")
-    public void deleteById(@PathVariable String id){
+    @DeleteMapping("/agreements/{id}")
+    public void deleteById(@PathVariable Long id){
     	log.info("Request to delete agreement: {}", id);
     	agreementService.deleteById(id);
-    }*/
+    }
 }

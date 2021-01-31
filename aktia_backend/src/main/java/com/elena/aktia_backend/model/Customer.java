@@ -29,7 +29,7 @@ import com.elena.aktia_backend.model.Agreement;
 public class Customer {
 
 	@Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_seq")
     private Long id;
     @NonNull
     private String name;

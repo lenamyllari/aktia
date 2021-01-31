@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import AgreementService from "./AgreementService"
 import {Container, Table} from "reactstrap";
 
 export default class  AgreementServiceList extends Component  {
@@ -14,9 +13,7 @@ export default class  AgreementServiceList extends Component  {
         fetch('/api/agreementServices')
             .then(response => response.json())
             .then(data => this.setState({services: data, isLoading: false}));
-
     }
-
 
 	render() {
         const {services, isLoading} = this.state;

@@ -40,9 +40,9 @@ public class CustomerController {
         return customerService.save(customer);
     }
 
-/*    @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable String id){
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Long id){
     	log.info("Request to delete customer: {}", id);
     	customerService.deleteById(id);
-    }*/
+    }
 }

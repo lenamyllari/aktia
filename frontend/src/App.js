@@ -6,6 +6,7 @@ import './App.css';
 import AppNavBar from "../src/Components/AppNavBar";
 import CustomerList from "./Components/CustomerList";
 import Customer from "./Components/Customer";
+import Agreement from "./Components/Agreement";
 import Home from "./Components/Home";
 
 function App() {
@@ -20,9 +21,10 @@ function App() {
       <AppNavBar/>
         <Router>
             <Switch>
-                <Route path='/' exact={true} component={Home}/>
-                <Route path='/customers' component={CustomerList}/>
-                <Route path='/customer/:id' component={Customer}/>
+                <Route exact path='/'  component={Home}/>
+                <Route exact path='/customers'  component={CustomerList}/>
+                <Route exact path='/customer/:id'  component={Customer}/>
+                <Route exact path='/agreement/:id'  component={Agreement}/>
             </Switch>
         </Router>
       </div>

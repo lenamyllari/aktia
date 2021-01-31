@@ -40,14 +40,14 @@ public class AgreementServiceController {
         return agreementServiceService.save(agreementService);
     }
     
-    @GetMapping("/agreementsServices/agreement/{id}")
+    @GetMapping("/agreementServices/agreement/{id}")
     public Collection <AgreementService> findByAgreementId(@PathVariable Long id){
         return agreementServiceService.findByAgreementId(id);
     }
 
-/*    @DeleteMapping("/agreementServices/{id}")
-    public void deleteById(@PathVariable String id){
+    @DeleteMapping("/agreementServices/{id}")
+    public void deleteById(@PathVariable Long id){
     	log.info("Request to delete agreementService: {}", id);
     	agreementServiceService.deleteById(id);
-    }*/
+    }
 }
