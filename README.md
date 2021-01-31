@@ -28,6 +28,6 @@ although I enjoy art and make good photos, so I should understand something abou
 
 8. You propably know all this better than me. but it's a README file, so this is supposed to be here:<br> 
 to start the server:<br> 
-<strong>./mvnw spring-boot:run</strong> in <strong>aktia_task/aktia_backend</strong> folder<br>
+<strong>./mvnw spring-boot:run</strong> in <strong>aktia/aktia_backend</strong> folder<br>
 to start the frontend:<br>
-<strong>npm start</strong> in <strong>aktia_task.frontend</strong> folder
+<strong>npm start</strong> in <strong>aktia.frontend</strong> folder
