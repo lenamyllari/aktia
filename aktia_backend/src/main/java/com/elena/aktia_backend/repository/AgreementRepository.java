@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface AgreementRepository extends JpaRepository<Agreement, Long> {
 	//List<Agreement> findAll(); 
-	
+	//Agreement findById(Long id);
 	List<Agreement> findByCustomerId(Long customerId);
 	 //Optional<Agreement> findByIdAndCustomerId(Long id, Long customerId);
 	 

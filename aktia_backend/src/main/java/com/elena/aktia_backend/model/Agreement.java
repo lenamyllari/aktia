@@ -2,6 +2,8 @@ package com.elena.aktia_backend.model;
 
 import lombok.Data;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
@@ -16,6 +18,8 @@ import java.util.Set;
 
 @Data
 @Builder
+//@Getter
+//@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
@@ -35,7 +39,7 @@ public class Agreement {
     
     //fetch=FetchType.EAGER, 
     @NonNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "customer", referencedColumnName = "id")
     private Customer customer;
 }

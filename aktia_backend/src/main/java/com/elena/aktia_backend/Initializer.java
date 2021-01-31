@@ -16,6 +16,7 @@ import java.util.stream.Stream;
 import java.time.LocalDateTime;
 
 
+
 @Component
 class Initializer implements CommandLineRunner {
 
@@ -31,31 +32,55 @@ class Initializer implements CommandLineRunner {
 
     @Override
     public void run(String... strings) {
-        Stream.of(new Customer("Matti Meikäläinen", "eka"), new Customer("Pekka VAnhanen", "toka"), new Customer("Maija Poppanen", "kolmas"),
-                new Customer("Anni Toivonen", "neljas")).forEach(customer ->
+        Stream.of(new Customer("Matti Meikäläinen", "eka"), new Customer("Pekka Vanhanen", "toka"), new Customer("Maija Poppanen", "kolmas"),
+                new Customer("Anni Toivonen", "neljas"), new Customer("Elena Mylläri", "viides")).forEach(customer ->
                 customerRepository.save(customer)
         );
         
-       Customer customer = customerRepository.findByName("Matti Meikäläinen");
-        Agreement a = Agreement.builder().agreementType(100)
-                .startDateTime(LocalDateTime.now())
-                .customer(customer)
-                .build();
-        customer.setAgreements(Collections.singleton(a));
+        Customer customer = customerRepository.findByName("Matti Meikäläinen");
+       Agreement a = new Agreement(100, LocalDateTime.now(), customer);
+       agreementRepository.save(a);
+       Agreement b = new Agreement(200, LocalDateTime.now(), customer);
+       agreementRepository.save(b);
         customerRepository.save(customer);
+        
+        Customer customer2 = customerRepository.findByName("Pekka Vanhanen");
+        Agreement c = new Agreement(100, LocalDateTime.now(), customer2);
+        agreementRepository.save(c);
+        Agreement d = new Agreement(200, LocalDateTime.now(), customer2);
+        agreementRepository.save(d);
+        customerRepository.save(customer2);
+ 
+        Customer customer3 = customerRepository.findByName("Anni Toivonen");
+        Agreement e = new Agreement(100, LocalDateTime.now(), customer3);
+        agreementRepository.save(e);
+        Agreement f = new Agreement(300, LocalDateTime.now(), customer3);
+        agreementRepository.save(d);
+        customerRepository.save(customer3);
+        
+        Customer customer4 = customerRepository.findByName("Elena Mylläri");
+        Agreement g = new Agreement(100, LocalDateTime.now(), customer4);
+        agreementRepository.save(g);
+        Agreement i = new Agreement(300, LocalDateTime.now(), customer4);
+        agreementRepository.save(i);
+        customerRepository.save(customer4);
+        
+        Customer customer5 = customerRepository.findByName("Maija Poppanen");
+        Agreement j = new Agreement(100, LocalDateTime.now(), customer5);
+        agreementRepository.save(j);
+        Agreement k = new Agreement(300, LocalDateTime.now(), customer5);
+        agreementRepository.save(k);
+        customerRepository.save(customer5);
+        
 
         
-       
-        Customer customer2 = customerRepository.findByName("Anni Toivonen");
-        Agreement c = Agreement.builder().agreementType(200)
-                .startDateTime(LocalDateTime.now())
-                .customer(customer2)
-                .build();
-        customer.setAgreements(Collections.singleton(c));
-        customerRepository.save(customer2);
-        
+/*        Agreement agr1 = agreementRepository.findById(new Long(6));
+        AgreementService as1 = new AgreementService(1, 5.0, agr1);
+        agreementServiceRepository.save(as1);
+        agreementRepository.save(agr1);*/
         
         agreementRepository.findAll().forEach(System.out::println);
         customerRepository.findAll().forEach(System.out::println);
+        //agreementServiceRepository.findAll().forEach(System.out::println);
     }
 }

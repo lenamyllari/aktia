@@ -35,9 +35,9 @@ public class Customer {
     private String name;
     @NonNull
     private String ssn;
-    
+/*    
     @OneToMany(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY, mappedBy = "customer")
-    private Set <Agreement> agreements;
+    private Set <Agreement> agreements;*/
     
 	@Override
 	public String toString() {
