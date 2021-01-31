@@ -18,7 +18,7 @@ export default class  CustomerList extends Component  {
             .then(data => this.setState({customers: data, isLoading: false}));
     }
 
-    async remove(id) {
+/*    async remove(id) {
         await fetch(`/api/customer/${id}`, {
             method: 'DELETE',
             headers: {
@@ -29,7 +29,7 @@ export default class  CustomerList extends Component  {
             let updatedCustomers = [...this.state.customers].filter(i => i.id !== id);
             this.setState({customers: updatedCustomers});
         });
-    }
+    }*/
 	render() {
         const {customers, isLoading} = this.state;
 

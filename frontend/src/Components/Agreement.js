@@ -5,13 +5,13 @@ import {Link} from "react-router-dom";
 export default class   Agreement extends Component{
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
+
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     emptyItem = {
-        type: '',
-        fee: '',
+        serviceType: null,
+        serviceFee: null,
     };
 
     state = {
@@ -20,6 +20,9 @@ export default class   Agreement extends Component{
         isLoading: false,
         adding:false,
         item: this.emptyItem,
+        itemFee:0,
+        itemType:0,
+        agreement: null,
     };
 
     static getDerivedStateFromProps(props, state) {
@@ -40,23 +43,19 @@ export default class   Agreement extends Component{
             .then(data =>  this.setState({services: data,  isLoading: false}));
     }
 
-    handleChange(event) {
-        const target = event.target;
-        const value = target.value;
-        const type = target.type;
-        const fee = target.fee;
-        let item = {
-            type: target.type,
-            fee: target.fee,
-        }
-        this.setState({item: item});
-    }
 
     async handleSubmit(event) {
         event.preventDefault();
-        const {item} = this.state;
-
-        await fetch('/api//agreementServices/add', {
+        await fetch('/api/agreements/' + this.state.agreementId)
+            .then(response => response.json())
+            .then(data =>  this.setState({agreement: data,  isLoading: false}));
+        let item = {
+            serviceType: this.state.itemType,
+            serviceFee: this.state.itemFee,
+            agreement: this.state.agreement
+        }
+        console.log(item)
+        await fetch('/api/agreementServices/add', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -64,7 +63,7 @@ export default class   Agreement extends Component{
             },
             body: JSON.stringify(item),
         });
-        this.props.history.push('/customers');
+        this.props.history.push('/agreement/'+this.state.agreementId);
     }
 
     render() {
@@ -99,14 +98,16 @@ export default class   Agreement extends Component{
                     <h2>Add new service</h2>
                     <Form onSubmit={this.handleSubmit}>
                         <FormGroup>
-                            <Label for="type">Type</Label>
-                            <Input type="text" name="type" id="type" value={item.type || ''}
-                                   onChange={this.handleChange} />
+                            <Label for="serviceType">Type</Label>
+                            <Input name="serviceType" id="serviceType"
+                                   defaultValue={this.state.item.serviceType}
+                                   onChange={(event) => {this.setState({itemType: event.target.value}) }}/>
                         </FormGroup>
                         <FormGroup>
                             <Label for="fee">Fee</Label>
-                            <Input type="text" name="fee" id="fee" value={item.fee || ''}
-                                   onChange={this.handleChange} />
+                            <Input name="fee" id="fee"
+                                   defaultValue={this.state.item.serviceFee}
+                                   onChange={(event) => { this.setState({itemFee: event.target.value}) }}/>
                         </FormGroup>
 
                         <FormGroup>

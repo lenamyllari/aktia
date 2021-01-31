@@ -9,6 +9,7 @@ import com.elena.aktia_backend.model.AgreementService;
 import com.elena.aktia_backend.service.AgreementServiceService;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 @RestController
 @RequestMapping("/api")
@@ -43,6 +44,17 @@ public class AgreementServiceController {
     @GetMapping("/agreementServices/agreement/{id}")
     public Collection <AgreementService> findByAgreementId(@PathVariable Long id){
         return agreementServiceService.findByAgreementId(id);
+    }
+    
+    @GetMapping("/agreementServices/sum/{id}")
+    public double findFeeSumByAgreementId(@PathVariable Long id){
+    	double sum =0;
+    	Collection <AgreementService> services = agreementServiceService.findByAgreementId(id);
+    	Iterator <AgreementService> iterator = services.iterator();
+    	while(iterator.hasNext()) {
+    		sum += iterator.next().getServiceFee();
+    	}
+        return sum;
     }
 
     @DeleteMapping("/agreementServices/{id}")

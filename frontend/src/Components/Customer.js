@@ -28,16 +28,23 @@ export default class  Customer extends Component{
         // Return null to indicate no change to state.
         return null;
     }
-    componentDidMount() {
-        this.setState({isLoading: true, customerId: this.props.match.params.id});
-        fetch('/api/customers/' + this.state.customerId)
-            .then(response => response.json())
-            .then(data => this.setState({customer: data, customerId: data.id, name: data.name, ssn: data.ssn, isLoading: false}));
+     async componentDidMount() {
+         this.setState({isLoading: true, customerId: this.props.match.params.id});
+         await fetch('/api/customers/' + this.state.customerId)
+             .then(response => response.json())
+             .then(data => this.setState({
+                 customer: data,
+                 customerId: data.id,
+                 name: data.name,
+                 ssn: data.ssn,
+                 isLoading: false
+             }));
 
-        fetch('/api/agreements/customer/' + this.state.customerId)
-            .then(response => response.json())
-            .then(data => this.setState({agreements: data}))
-    }
+         await fetch('/api/agreements/customer/' + this.state.customerId)
+             .then(response => response.json())
+             .then(data => this.setState({agreements: data}))
+
+     }
 
     render() {
         const {agreements, isLoading} = this.state;
@@ -53,7 +60,7 @@ export default class  Customer extends Component{
                     <td ><Link to={"/agreement/" + agreement.id} params={{id:agreement.id}}>{agreement.agreementType}</Link></td>
                     <td>{agreement.startDateTime}</td>
                     <td>{agreement.endDateTime}</td>
-
+                    <td>{this.getFeeSum(agreement.id)}</td>
                 </tr>
             )
         });
@@ -71,7 +78,7 @@ export default class  Customer extends Component{
                         <th >Type</th>
                         <th >Start date</th>
                         <th >End date</th>
-
+                        <th>Fees for services</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -83,4 +90,16 @@ export default class  Customer extends Component{
         )
     }
 
+    getFeeSum(agr_id) {
+       let sum = 0.0;
+        this.state.agreements.forEach(async agreement => {
+            await fetch('/api/agreementServices/sum/' + agr_id)
+                .then(response => response.json())
+                .then(data => sum = data);
+            console.log("sum " + sum);
+            return sum;
+        });
+
+
+    }
 }

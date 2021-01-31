@@ -21,10 +21,10 @@ function App() {
       <AppNavBar/>
         <Router>
             <Switch>
-                <Route exact path='/'  component={Home}/>
-                <Route exact path='/customers'  component={CustomerList}/>
-                <Route exact path='/customer/:id'  component={Customer}/>
-                <Route exact path='/agreement/:id'  component={Agreement}/>
+
+                <Route  path='/customers'  component={CustomerList}/>
+                <Route  path='/customer/:id'  component={Customer}/>
+                <Route  path='/agreement/:id'  component={Agreement}/>
             </Switch>
         </Router>
       </div>
