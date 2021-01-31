@@ -39,6 +39,11 @@ public class AgreementController {
     	log.info("Request to update agreement: {}", agreement);
         return agreementService.save(agreement);
     }
+    
+    @GetMapping("/agreements/customer/{id}")
+    public Collection <Agreement> findByCustomerId(@PathVariable Long id){
+        return agreementService.findByCustomerId(id);
+    }
 
 /*    @DeleteMapping("/agreements/{id}")
     public void deleteById(@PathVariable String id){

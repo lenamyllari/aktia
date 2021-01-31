@@ -74,13 +74,13 @@ class Initializer implements CommandLineRunner {
         
 
         
-/*        Agreement agr1 = agreementRepository.findById(new Long(6));
+        Agreement agr1 = agreementRepository.findById(new Long(6)).get();
         AgreementService as1 = new AgreementService(1, 5.0, agr1);
         agreementServiceRepository.save(as1);
-        agreementRepository.save(agr1);*/
+        agreementRepository.save(agr1);
         
         agreementRepository.findAll().forEach(System.out::println);
         customerRepository.findAll().forEach(System.out::println);
-        //agreementServiceRepository.findAll().forEach(System.out::println);
+        agreementServiceRepository.findAll().forEach(System.out::println);
     }
 }

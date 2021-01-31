@@ -6,11 +6,12 @@ import com.elena.aktia_backend.model.Agreement;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Collection;
 
 public interface AgreementRepository extends JpaRepository<Agreement, Long> {
 	//List<Agreement> findAll(); 
 	//Agreement findById(Long id);
-	List<Agreement> findByCustomerId(Long customerId);
+	Collection<Agreement> findByCustomerId(Long customerId);
 	 //Optional<Agreement> findByIdAndCustomerId(Long id, Long customerId);
 	 
 	// List<Agreement> findByAgreementType(int agreementType);

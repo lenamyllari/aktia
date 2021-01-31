@@ -30,7 +30,7 @@ public class AgreementService {
         return agreementRepository.save(agreement);
     }
     
-    List<Agreement> findByCustomerId(Long customerId){
+    public Collection<Agreement> findByCustomerId(Long customerId){
     	return agreementRepository.findByCustomerId(customerId);
     }
 

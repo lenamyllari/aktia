@@ -30,7 +30,7 @@ export default class  AgreementList extends Component  {
                 <tr key={agreement.id}>
                     <td style={{whiteSpace: 'nowrap'}} >{agreement.id}</td>
                     <td>{agreement.agreementType}</td>
-                    <td>{agreement.customer}</td>
+                    <td>{agreement.customer.name}</td>
                     <td>{agreement.startDateTime}</td>
                 </tr>
             )

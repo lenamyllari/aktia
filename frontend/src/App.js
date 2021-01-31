@@ -5,7 +5,7 @@ import './App.css';
 
 import AppNavBar from "../src/Components/AppNavBar";
 import CustomerList from "./Components/CustomerList";
-import CustomerEdit from "./Components/CustomerEdit";
+import Customer from "./Components/Customer";
 import Home from "./Components/Home";
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
             <Switch>
                 <Route path='/' exact={true} component={Home}/>
                 <Route path='/customers' component={CustomerList}/>
+                <Route path='/customer/:id' component={Customer}/>
             </Switch>
         </Router>
       </div>

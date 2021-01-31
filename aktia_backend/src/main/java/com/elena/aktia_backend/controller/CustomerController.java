@@ -23,7 +23,7 @@ public class CustomerController {
         return customerService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/customers/{id}")
     public Customer findById(@PathVariable Long id){
         return customerService.findById(id);
     }

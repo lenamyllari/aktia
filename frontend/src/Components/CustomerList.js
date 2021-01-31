@@ -16,7 +16,6 @@ export default class  CustomerList extends Component  {
         fetch('/api/customers')
             .then(response => response.json())
             .then(data => this.setState({customers: data, isLoading: false}));
-        console.log("customers " + this.state.customers)
     }
 
     async remove(id) {
@@ -41,7 +40,7 @@ export default class  CustomerList extends Component  {
         const customerList = customers.map(customer => {
             return(
             <tr key={customer.id}>
-                <td style={{whiteSpace: 'nowrap'}} >{customer.name}</td>
+                <td style={{whiteSpace: 'nowrap'}}><Link to={"/customer/" + customer.id} params={{id:customer.id}}>{customer.name}</Link></td>
                 <td>{customer.ssn}</td>
                 <td>
                 </td>

@@ -28,6 +28,10 @@ public class AgreementServiceService {
     public AgreementService save(AgreementService agreementService){
         return agreementServiceRepository.save(agreementService);
     }
+    
+    public Collection<AgreementService> findByAgreementId(Long agreementId){
+    	return agreementServiceRepository.findByAgreementId(agreementId);
+    }
 
     public void deleteById(Long id){
     	agreementServiceRepository.deleteById(id);

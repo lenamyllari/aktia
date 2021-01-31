@@ -26,7 +26,7 @@ public class AgreementService {
     private double serviceFee;
     
     @NonNull
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "agreement", referencedColumnName = "id")
     private Agreement agreement;
 }
