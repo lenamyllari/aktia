@@ -30,7 +30,7 @@ export default class AppNavbar extends Component {
             <Switch>
                 <Route exact path="/">
                 </Route>
-                <Route path="/customers">
+                <Route exact path="/customers">
                     <CustomerList customers={customers}></CustomerList>
                 </Route>
                 <Route path="/agreements">

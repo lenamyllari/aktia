@@ -36,30 +36,26 @@ class Initializer implements CommandLineRunner {
                 customerRepository.save(customer)
         );
         
-      /* Customer customer = customerRepository.findByname("Matti Meikäläinen");
-        Customer customer2 = customerRepository.findByname("Anni Toivonen");
+       Customer customer = customerRepository.findByName("Matti Meikäläinen");
         Agreement a = Agreement.builder().agreementType(100)
                 .startDateTime(LocalDateTime.now())
+                .customer(customer)
                 .build();
         customer.setAgreements(Collections.singleton(a));
-        customerRepository.save(customer);*/
-        /*Stream.of(new Agreement(100, LocalDateTime.now(), customer), 
-        		new Agreement(200, LocalDateTime.now(), customer), 
-        		new Agreement(300, LocalDateTime.now(), customer2),
-                new Agreement(400, LocalDateTime.now(), customer2)).forEach(agreement ->
-                agreementRepository.save(agreement)
-        );
+        customerRepository.save(customer);
+
         
-        Agreement agreement = agreementRepository.findByType(100);
-        Agreement agreement2 = agreementRepository.findByType(200);
-        Stream.of(new AgreementService(1, 5.0, agreement), 
-        		new AgreementService(1, 15.0, agreement), 
-        		new AgreementService(2, 25.0, agreement2),
-                new AgreementService(3, 35.0, agreement2)).forEach(agreementService ->
-                agreementServiceRepository.save(agreementService)
-        );*/
-
-
+       
+        Customer customer2 = customerRepository.findByName("Anni Toivonen");
+        Agreement c = Agreement.builder().agreementType(200)
+                .startDateTime(LocalDateTime.now())
+                .customer(customer2)
+                .build();
+        customer.setAgreements(Collections.singleton(c));
+        customerRepository.save(customer2);
+        
+        
+        agreementRepository.findAll().forEach(System.out::println);
         customerRepository.findAll().forEach(System.out::println);
     }
 }

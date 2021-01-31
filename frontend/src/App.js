@@ -1,5 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+
 import AppNavBar from "../src/Components/AppNavBar";
 import CustomerList from "./Components/CustomerList";
 import CustomerEdit from "./Components/CustomerEdit";
@@ -19,8 +22,6 @@ function App() {
             <Switch>
                 <Route path='/' exact={true} component={Home}/>
                 <Route path='/customers' component={CustomerList}/>
-                <Route path='/customers/new'  component={CustomerEdit}/>
-                <Route path='/customers/:id' component={CustomerEdit}/>
             </Switch>
         </Router>
       </div>

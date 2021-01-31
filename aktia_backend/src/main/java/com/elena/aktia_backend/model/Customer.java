@@ -18,9 +18,12 @@ import com.elena.aktia_backend.model.Agreement;
 
 @Builder
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "customer")
 public class Customer {
@@ -33,8 +36,8 @@ public class Customer {
     @NonNull
     private String ssn;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
-    private Collection <Agreement> agreement;
+    @OneToMany(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY, mappedBy = "customer")
+    private Set <Agreement> agreements;
     
 	@Override
 	public String toString() {

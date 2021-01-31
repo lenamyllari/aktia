@@ -33,8 +33,9 @@ public class Agreement {
     @Nullable
     private LocalDateTime endDateTime;
     
+    //fetch=FetchType.EAGER, 
     @NonNull
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer", referencedColumnName = "id")
     private Customer customer;
 }

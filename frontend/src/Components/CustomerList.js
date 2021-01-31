@@ -11,16 +11,6 @@ export default class  CustomerList extends Component  {
         isLoading: false,
 	};
 
-/*	static getDerivedStateFromProps(props, state) {
-        if (props.customers !== state.customers) {
-            return {
-                customers: props.customers,
-            };
-        }
-        // Return null to indicate no change to state.
-        return null;
-    }*/
-
    componentDidMount() {
         this.setState({isLoading: true});
         fetch('/api/customers')
@@ -54,27 +44,19 @@ export default class  CustomerList extends Component  {
                 <td style={{whiteSpace: 'nowrap'}} >{customer.name}</td>
                 <td>{customer.ssn}</td>
                 <td>
-                    <ButtonGroup>
-                        <Button size="sm" color="primary" tag={Link} to={"/customers/" + customer.id}>Edit</Button>
-                        <Button size="sm" color="danger" onClick={() => this.remove(customer.id)}>Delete</Button>
-                    </ButtonGroup>
                 </td>
             </tr>
             )
         });
 
         return (
-            <div>
-
-                <div className="float-right">
-                    <Button color="success" tag={Link} to="/customers/new">Add customer</Button>
-                </div>
-                <Table className="mt-4">
+            <div size="sm">
+                <Container fluid>
+                <Table  hover size="sm">
                     <thead>
                     <tr>
-                        <th width="20%">Name</th>
-                        <th width="20%">SSN</th>
-                        <th width="10%">Actions</th>
+                        <th >Name</th>
+                        <th >SSN</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -82,7 +64,7 @@ export default class  CustomerList extends Component  {
                     </tbody>
                 </Table>
 
-
+                </Container>
             </div>
         )
     }
